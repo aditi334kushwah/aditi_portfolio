@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aditi-kushwah.vercel.app/sitemap.xml
+
