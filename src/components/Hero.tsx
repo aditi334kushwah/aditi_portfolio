@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowDown,
   Mail,
@@ -14,12 +14,63 @@ import {
   Check,
   Copy,
   ExternalLink,
+  X,
+  Maximize2,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 import TiltCard from "@/components/TiltCard";
 
+interface ProjectCardData {
+  id: string;
+  title: string;
+  tagline: string;
+  category: string;
+  image: string;
+  liveUrl: string;
+  tech: string[];
+  rotation: number;
+  offsetY: number;
+}
+
+const HERO_PROJECT_CARDS: ProjectCardData[] = [
+  {
+    id: "mailvora",
+    title: "Mailvora",
+    tagline: "Email SaaS & Async Queue Engine",
+    category: "Full Stack SaaS",
+    image: "/projects/mailvora.jpg",
+    liveUrl: "https://mailvora-eight.vercel.app/",
+    tech: ["Django DRF", "Next.js", "Celery", "Neon DB"],
+    rotation: -9,
+    offsetY: 18,
+  },
+  {
+    id: "profile",
+    title: "Aditi Kushwah",
+    tagline: "Available for Opportunities",
+    category: "Full Stack Engineer",
+    image: "/aditi-portrait.png",
+    liveUrl: "/resume",
+    tech: ["Python", "Django", "React", "MCA (8.10)"],
+    rotation: 0,
+    offsetY: -10,
+  },
+  {
+    id: "tripnova",
+    title: "TripNova",
+    tagline: "Travel Booking Platform",
+    category: "Booking System",
+    image: "/projects/tripnova.jpg",
+    liveUrl: "https://travellingwebsite-ten.vercel.app/",
+    tech: ["Next.js 16", "Django DRF", "Razorpay", "Neon DB"],
+    rotation: 9,
+    offsetY: 18,
+  },
+];
+
 export default function Hero() {
   const [copied, setCopied] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<ProjectCardData | null>(null);
   const emailAddress = "aaditikkushwah12530@gmail.com";
 
   const handleCopyEmail = () => {
@@ -230,87 +281,209 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Column: 3D Interactive Floating Physics Terminal Artifact */}
+          {/* Right Column: Overlapping Fanned Cards (As seen in inspiration) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, x: 40 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-5 flex justify-center lg:justify-end"
+            className="lg:col-span-5 flex flex-col items-center justify-center relative py-8"
           >
-            <div className="relative w-full max-w-md">
-              <TiltCard depth={18} glowColor="rgba(99, 102, 241, 0.25)">
-                {/* Developer Terminal Card (Clean high-contrast theme) */}
-                <div className="rounded-2xl bg-[#0f172a] text-white border border-slate-800 shadow-2xl backdrop-blur-xl overflow-hidden">
-                  {/* Window Bar */}
-                  <div className="px-4 py-3 bg-[#0a0f1d] border-b border-white/10 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
-                      <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
-                      <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-                      <span className="ml-2 text-xs font-mono text-slate-400">
-                        aditi_kushwah.py
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-[11px] text-slate-400 font-mono">
-                      <Terminal className="w-3.5 h-3.5 text-indigo-400" />
-                      <span>Python 3.12</span>
-                    </div>
-                  </div>
+            {/* Visual Header / Subtitle */}
+            <div className="w-full text-center lg:text-right mb-3">
+              <span className="text-[11px] font-mono tracking-wider uppercase text-[#35C8F4] bg-[#35C8F4]/10 border border-[#35C8F4]/20 px-3 py-1 rounded-full inline-block">
+                ✦ Click any card to expand full view
+              </span>
+            </div>
 
-                  {/* Terminal Code Body */}
-                  <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed text-slate-300 overflow-x-auto">
-                    <div className="text-slate-500 mb-2"># Senior-Ready Engineering Stack</div>
-                    <div>
-                      <span className="text-purple-400">class</span>{" "}
-                      <span className="text-emerald-400 font-bold">PythonFullStackEngineer</span>:
-                    </div>
-                    <div className="pl-4">
-                      <span className="text-purple-400">def</span>{" "}
-                      <span className="text-sky-400">__init__</span>(self):
-                    </div>
-                    <div className="pl-8 text-slate-300">
-                      self.name = &quot;Aditi Kushwah&quot;
-                      <br />
-                      self.role = &quot;Backend &amp; Full Stack&quot;
-                      <br />
-                      self.backend = [&quot;Django&quot;, &quot;DRF&quot;, &quot;PostgreSQL&quot;]
-                      <br />
-                      self.frontend = [&quot;Next.js&quot;, &quot;React&quot;, &quot;TypeScript&quot;]
-                      <br />
-                      self.education = &quot;Integrated MCA (Final Year)&quot;
-                      <br />
-                      self.experience = &quot;6 Months Internship&quot;
-                    </div>
-                    <div className="pl-4 mt-2">
-                      <span className="text-purple-400">def</span>{" "}
-                      <span className="text-sky-400">deliver_value</span>(self):
-                    </div>
-                    <div className="pl-8 text-indigo-400">
-                      return &#123;&quot;scalable_apis&quot;: True, &quot;clean_architecture&quot;: True&#125;
-                    </div>
-                  </div>
+            {/* Overlapping Fanned Photos Deck */}
+            <div className="relative w-full h-[360px] sm:h-[400px] flex items-center justify-center">
+              {HERO_PROJECT_CARDS.map((card, idx) => {
+                const isCenter = card.id === "profile";
+                return (
+                  <motion.div
+                    key={card.id}
+                    onClick={() => setSelectedPhoto(card)}
+                    style={{
+                      zIndex: isCenter ? 30 : idx === 0 ? 10 : 20,
+                    }}
+                    initial={{
+                      rotate: card.rotation,
+                      y: card.offsetY,
+                      scale: isCenter ? 1.05 : 0.95,
+                    }}
+                    whileHover={{
+                      rotate: 0,
+                      scale: 1.12,
+                      y: -15,
+                      zIndex: 50,
+                      transition: { duration: 0.25, ease: "easeOut" },
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`absolute w-[200px] sm:w-[230px] h-[280px] sm:h-[320px] rounded-2xl overflow-hidden cursor-pointer shadow-2xl transition-shadow duration-300 border ${
+                      isCenter
+                        ? "border-[#6C63FF]/50 shadow-[#6C63FF]/30 -translate-x-0"
+                        : idx === 0
+                        ? "border-white/15 -translate-x-16 sm:-translate-x-24 shadow-black/60"
+                        : "border-white/15 translate-x-16 sm:translate-x-24 shadow-black/60"
+                    }`}
+                  >
+                    {/* Background Image */}
+                    <div className="relative w-full h-full bg-[#151D30]">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="w-full h-full object-cover select-none"
+                      />
+                      {/* Gradient Overlay for Text Readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#090D18] via-[#090D18]/30 to-transparent" />
 
-                  {/* Micro Metric Badges */}
-                  <div className="p-4 bg-white/[0.02] border-t border-white/10 grid grid-cols-3 gap-2 text-center text-xs">
-                    <div className="p-2 rounded-lg bg-white/5 border border-white/5">
-                      <div className="text-indigo-400 font-bold">2+</div>
-                      <div className="text-[10px] text-slate-400">Flagship Apps</div>
+                      {/* Top Floating Badge */}
+                      <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold bg-[#090D18]/85 text-[#F8FAFC] backdrop-blur-md border border-white/10 flex items-center gap-1.5 shadow-sm">
+                          {isCenter ? (
+                            <>
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                              <span>Live Status</span>
+                            </>
+                          ) : (
+                            <span>{card.category}</span>
+                          )}
+                        </span>
+                        <div className="p-1.5 rounded-full bg-[#090D18]/70 backdrop-blur-md text-white/80 border border-white/10 hover:text-white">
+                          <Maximize2 className="w-3 h-3" />
+                        </div>
+                      </div>
+
+                      {/* Bottom Details Card Footer */}
+                      <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-[#090D18]/90 backdrop-blur-md border border-white/10 text-left">
+                        <div className="text-xs font-bold text-[#F8FAFC] truncate">
+                          {card.title}
+                        </div>
+                        <div className="text-[10px] text-[#35C8F4] font-medium truncate mt-0.5">
+                          {card.tagline}
+                        </div>
+                        <div className="flex flex-wrap gap-1 mt-1.5">
+                          {card.tech.slice(0, 2).map((t) => (
+                            <span
+                              key={t}
+                              className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-[#A1AAB9]"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <div className="p-2 rounded-lg bg-white/5 border border-white/5">
-                      <div className="text-purple-400 font-bold">6 Mo</div>
-                      <div className="text-[10px] text-slate-400">Internship Exp</div>
-                    </div>
-                    <div className="p-2 rounded-lg bg-white/5 border border-white/5">
-                      <div className="text-sky-400 font-bold">MCA</div>
-                      <div className="text-[10px] text-slate-400">Final Year</div>
-                    </div>
-                  </div>
-                </div>
-              </TiltCard>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Quick Caption Bar */}
+            <div className="flex items-center gap-4 text-xs font-mono text-[#A1AAB9] mt-2">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#6C63FF]" />
+                <span>Mailvora SaaS</span>
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>Aditi Kushwah</span>
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#35C8F4]" />
+                <span>TripNova Booking</span>
+              </span>
             </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Full Screen Interactive Lightbox Modal */}
+      <AnimatePresence>
+        {selectedPhoto && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedPhoto(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 28 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-2xl bg-[#151D30] rounded-3xl border border-white/15 overflow-hidden shadow-2xl"
+            >
+              {/* Modal Top Bar */}
+              <div className="flex items-center justify-between p-4 sm:p-5 border-b border-white/10 bg-[#090D18]">
+                <div className="flex items-center gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-[#F8FAFC]">
+                      {selectedPhoto.title}
+                    </h3>
+                    <p className="text-xs text-[#35C8F4] font-medium font-mono">
+                      {selectedPhoto.category}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setSelectedPhoto(null)}
+                  className="p-2 rounded-full bg-white/5 hover:bg-white/15 text-white/80 hover:text-white transition-colors cursor-pointer"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* High-Resolution Image Container */}
+              <div className="relative w-full max-h-[58vh] bg-[#090D18] flex items-center justify-center overflow-hidden">
+                <img
+                  src={selectedPhoto.image}
+                  alt={selectedPhoto.title}
+                  className="w-full h-full max-h-[58vh] object-contain"
+                />
+              </div>
+
+              {/* Bottom Details & Direct Link */}
+              <div className="p-5 sm:p-6 bg-[#151D30] border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <div className="text-sm font-semibold text-[#F8FAFC]">
+                    {selectedPhoto.tagline}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {selectedPhoto.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-xs font-mono px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[#A1AAB9]"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {selectedPhoto.liveUrl && (
+                  <a
+                    href={selectedPhoto.liveUrl}
+                    target={selectedPhoto.liveUrl.startsWith("http") ? "_blank" : "_self"}
+                    rel="noopener noreferrer"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#35C8F4] hover:opacity-95 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#6C63FF]/20 shrink-0 transition-transform active:scale-95"
+                  >
+                    <span>{selectedPhoto.id === "profile" ? "View Full Resume" : "Open Live Project"}</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
