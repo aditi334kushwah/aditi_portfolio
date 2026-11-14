@@ -21,55 +21,94 @@ export default function Profiles() {
           </p>
         </div>
 
-        {/* Profile Cards */}
+        {/* Profile Cards - Individualized Aesthetic Identity */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {CODING_PROFILES.map((profile) => (
-            <div
-              key={profile.name}
-              className="p-8 rounded-3xl surface-card border border-adaptive hover:border-indigo-500/40 transition-all duration-300 flex flex-col justify-between group shadow-lg"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className="p-3 rounded-2xl bg-white/5 border border-adaptive group-hover:scale-105 transition-transform">
-                      {profile.name === "GitHub" ? (
-                        <GithubIcon className="w-6 h-6 text-heading" />
-                      ) : (
-                        <Code className="w-6 h-6 text-amber-500" />
-                      )}
+          {CODING_PROFILES.map((profile) => {
+            const isGitHub = profile.name === "GitHub";
+            const accentColor = isGitHub ? "#6C63FF" : "#F59E0B";
+            const glowColor = isGitHub
+              ? "rgba(108, 99, 255, 0.35)"
+              : "rgba(245, 158, 11, 0.35)";
+
+            return (
+              <div
+                key={profile.name}
+                className={`relative p-8 rounded-3xl bg-[#151D30] border border-white/10 ${
+                  isGitHub
+                    ? "hover:border-[#6C63FF]/50 hover:shadow-[#6C63FF]/20"
+                    : "hover:border-amber-500/50 hover:shadow-amber-500/20"
+                } transition-all duration-300 flex flex-col justify-between group shadow-xl overflow-hidden`}
+              >
+                {/* Dynamic Ambient Background Glow */}
+                <div
+                  className={`absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-20 group-hover:opacity-60 transition-opacity duration-500`}
+                  style={{ backgroundColor: accentColor }}
+                />
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3.5">
+                      <div
+                        className="p-3.5 rounded-2xl border border-white/10 group-hover:scale-110 transition-transform duration-300 shadow-md"
+                        style={{ backgroundColor: `${accentColor}18` }}
+                      >
+                        {isGitHub ? (
+                          <GithubIcon className="w-6 h-6 text-[#F8FAFC]" />
+                        ) : (
+                          <Code className="w-6 h-6 text-amber-400" />
+                        )}
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-[#F8FAFC]">
+                          {profile.name}
+                        </h3>
+                        <div
+                          className="text-xs font-mono font-semibold"
+                          style={{ color: accentColor }}
+                        >
+                          @{profile.handle}
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-heading">{profile.name}</h3>
-                      <div className="text-xs font-mono text-indigo-500 dark:text-indigo-400 font-semibold">@{profile.handle}</div>
-                    </div>
+
+                    <span
+                      className="px-3 py-1 rounded-full text-xs font-mono font-bold border"
+                      style={{
+                        backgroundColor: `${accentColor}15`,
+                        color: accentColor,
+                        borderColor: `${accentColor}30`,
+                      }}
+                    >
+                      {profile.badge}
+                    </span>
                   </div>
 
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-white/5 border border-adaptive text-body">
-                    {profile.badge}
-                  </span>
+                  <p className="text-sm text-[#A1AAB9] leading-relaxed mb-6 font-medium">
+                    {profile.description}
+                  </p>
+
+                  <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 mb-6 flex items-center justify-between">
+                    <span className="text-xs text-[#A1AAB9] font-mono">Focus Track:</span>
+                    <span className="text-xs font-bold text-[#F8FAFC]">{profile.stats}</span>
+                  </div>
                 </div>
 
-                <p className="text-sm text-body leading-relaxed mb-6 font-medium">
-                  {profile.description}
-                </p>
-
-                <div className="p-4 rounded-2xl bg-white/5 border border-adaptive mb-6 flex items-center justify-between">
-                  <span className="text-xs text-body font-mono">Focus Track:</span>
-                  <span className="text-xs font-bold text-heading">{profile.stats}</span>
-                </div>
+                <a
+                  href={profile.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`relative z-10 w-full py-3.5 rounded-xl font-semibold text-xs border border-white/15 flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer ${
+                    isGitHub
+                      ? "bg-gradient-to-r from-[#6C63FF] to-[#35C8F4] text-white shadow-lg shadow-[#6C63FF]/25 hover:opacity-95"
+                      : "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/25 hover:opacity-95"
+                  }`}
+                >
+                  <span>Visit {profile.name} Profile</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-white" />
+                </a>
               </div>
-
-              <a
-                href={profile.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-heading font-semibold text-xs border border-adaptive flex items-center justify-center gap-2 group-hover:border-indigo-500/40 transition-all"
-              >
-                <span>Visit {profile.name} Profile</span>
-                <ExternalLink className="w-3.5 h-3.5 text-body group-hover:text-heading" />
-              </a>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
