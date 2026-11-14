@@ -48,13 +48,21 @@ export default function ResumePage() {
               </p>
             </div>
 
-            <div className="flex items-center gap-2.5 shrink-0">
-              <button
-                onClick={() => window.print()}
+            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a
+                href="/Aditi_Kushwah_Resume.pdf"
+                download="Aditi_Kushwah_Resume.pdf"
                 className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-indigo-600/25 transition-all flex items-center gap-2 cursor-pointer hover:scale-[1.02] active:scale-95"
               >
                 <Download className="w-4 h-4" />
-                <span>Download / Print PDF</span>
+                <span>Download Resume (PDF)</span>
+              </a>
+              <button
+                onClick={() => window.print()}
+                className="px-4 py-2.5 rounded-xl border border-adaptive bg-white/5 hover:bg-white/10 text-heading text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 cursor-pointer"
+                title="Print or Save to PDF via browser dialog"
+              >
+                <span>Print</span>
               </button>
               <Link
                 href="/contact"

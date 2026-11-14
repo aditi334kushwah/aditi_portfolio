@@ -6,6 +6,7 @@ import {
   ArrowDown,
   Mail,
   FileText,
+  Download,
   Terminal,
   Database,
   Layers,
@@ -19,7 +20,7 @@ import TiltCard from "@/components/TiltCard";
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
-  const emailAddress = "aditikushwah.dev@gmail.com";
+  const emailAddress = "aaditikkushwah12530@gmail.com";
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -136,11 +137,13 @@ export default function Hero() {
               <motion.a
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                href="/resume"
+                href="/Aditi_Kushwah_Resume.pdf"
+                download="Aditi_Kushwah_Resume.pdf"
                 className="hero-btn-secondary px-6 py-3.5 rounded-xl font-medium text-sm border shadow-sm transition-all flex items-center gap-2"
+                title="Direct 1-Click Download Aditi's Resume PDF"
               >
-                <FileText className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
-                <span>Resume &amp; Credentials</span>
+                <Download className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
+                <span>Download Resume</span>
               </motion.a>
 
               <motion.button

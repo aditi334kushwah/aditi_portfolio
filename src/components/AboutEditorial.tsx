@@ -432,11 +432,20 @@ export default function AboutEditorial() {
           </div>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              href="/resume"
+            <a
+              href="/Aditi_Kushwah_Resume.pdf"
+              download="Aditi_Kushwah_Resume.pdf"
               className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-400 hover:text-indigo-300"
             >
-              <span>Read complete resume &amp; academic track</span>
+              <span>Download full resume PDF</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+            <span className="text-slate-600">•</span>
+            <Link
+              href="/resume"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-body hover:text-heading"
+            >
+              <span>View live interactive resume</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
             <span className="text-slate-600">•</span>
