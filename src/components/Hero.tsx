@@ -47,7 +47,7 @@ const HERO_PROJECT_CARDS: ProjectCardData[] = [
   {
     id: "profile",
     title: "Aditi Kushwah",
-    tagline: "Available for Opportunities",
+    tagline: "",
     category: "Full Stack Engineer",
     image: "/aditi-portrait.png",
     liveUrl: "/resume",
@@ -319,13 +319,12 @@ export default function Hero() {
                       transition: { duration: 0.25, ease: "easeOut" },
                     }}
                     whileTap={{ scale: 0.98 }}
-                    className={`absolute w-[200px] sm:w-[230px] h-[280px] sm:h-[320px] rounded-2xl overflow-hidden cursor-pointer shadow-2xl transition-shadow duration-300 border ${
-                      isCenter
-                        ? "border-[#6C63FF]/50 shadow-[#6C63FF]/30 -translate-x-0"
-                        : idx === 0
+                    className={`absolute w-[200px] sm:w-[230px] h-[280px] sm:h-[320px] rounded-2xl overflow-hidden cursor-pointer shadow-2xl transition-shadow duration-300 border ${isCenter
+                      ? "border-[#6C63FF]/50 shadow-[#6C63FF]/30 -translate-x-0"
+                      : idx === 0
                         ? "border-white/15 -translate-x-16 sm:-translate-x-24 shadow-black/60"
                         : "border-white/15 translate-x-16 sm:translate-x-24 shadow-black/60"
-                    }`}
+                      }`}
                   >
                     {/* Background Image */}
                     <div className="relative w-full h-full bg-[#151D30]">
@@ -343,7 +342,7 @@ export default function Hero() {
                           {isCenter ? (
                             <>
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                              <span>Live Status</span>
+
                             </>
                           ) : (
                             <span>{card.category}</span>
