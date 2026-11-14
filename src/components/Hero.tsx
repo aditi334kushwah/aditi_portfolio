@@ -187,7 +187,7 @@ export default function Hero() {
                 <motion.a
                   whileHover={{ scale: 1.15, rotate: 4 }}
                   whileTap={{ scale: 0.95 }}
-                  href="https://linkedin.com/in/aditi-kushwah-python"
+                  href="https://www.linkedin.com/in/aditi-kushwah-9989382b3"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hero-social-btn p-2.5 rounded-lg border shadow-sm text-indigo-500 transition-all"

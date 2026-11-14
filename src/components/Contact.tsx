@@ -33,7 +33,7 @@ export default function Contact() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 
-  const emailAddress = "aditikushwah334@gmail.com";
+  const emailAddress = "aaditikkushwah12530@gmail.com";
   const phoneNumber = "+91 9760404709";
   const rawPhoneNumber = "9760404709";
   const whatsappUrl = `https://wa.me/919760404709?text=${encodeURIComponent(

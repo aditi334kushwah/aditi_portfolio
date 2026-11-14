@@ -508,10 +508,10 @@ export default function AboutEditorial() {
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-6 border-t border-white/10">
               <a
-                href="mailto:aditikushwah334@gmail.com"
+                href="mailto:aaditikkushwah12530@gmail.com"
                 className="text-xl sm:text-2xl font-mono font-bold text-white hover:text-indigo-300 transition-colors inline-flex items-center gap-2"
               >
-                <span>aditikushwah334@gmail.com</span>
+                <span>aaditikkushwah12530@gmail.com</span>
                 <ArrowUpRight className="w-5 h-5" />
               </a>
 
